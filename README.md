@@ -18,6 +18,19 @@ AFAIK WebStorm doesn't have any particular installation (or import) procedure fo
 Instead just drop `*.xml` files from this repository into WebStorm's folder where it stores LiveTemplates.
 Usually this is the `[your home directory]/.WebIde40/config/templates`.
 
+### Automatic with install-live-templates
+If you are annoyed by a manual install, you should have a look at this useful project [install-live-templates](https://github.com/jamestalmage/install-live-templates)
+
+1. Open terminal: get node & npm
+2. Install via npm: `npm install -g live-template-installer`
+3. Then go into this project on your side and run `live-templates install` or `live-templates backup`
+4. You should restart WebStorm to import new templates!
+
+*The file `./live_template_registry.json` lists all files which need to be installed or saved*
+
+Please find more information about this package on his [github](https://github.com/jamestalmage/install-live-templates)!
+
+
 ##How to use the Live Templates
 The following show the available abbrivations and their default implementations. Variables that are editable upon template expansion are delemited with the $ sign (ex. `$filterName$`).
 `$END$` indicates where the cursor will be placed upon template completion.
@@ -270,6 +283,267 @@ it('$should$', inject(function($injectables$) {
     $END$
 }));
 ```
+`jasctrl` - Jasmine describe controller
+
+```HTML
+describe('$MyName$Ctrl', function() {
+  var $rootScope,
+      $scope,
+      controller;
+  beforeEach(function () {
+    module('$module$', _dependencies_);
+
+    inject(function ($injector) {
+      $rootScope = $injector.get('$rootScope');
+      $scope = $rootScope.$new();
+      controller = $injector.get('$controller')('$MyName$Ctrl', {$scope. $scope});
+    });
+
+  });
+
+  $END$
+
+});
+```
+`jasdirective` - Jasmine describe directive
+
+```HTML
+describe('$MyName$', function() {
+  var $rootScope,
+      $scope,
+      $compile,
+      el,
+      $body = $('body'),
+      simpleHtml = '$directiveHtml$';
+
+  beforeEach(function () {
+    module('$module$', _dependencies_);
+
+    inject(function ($injector) {
+      $rootScope = $injector.get('$rootScope');
+      $scope = $rootScope.$new();
+      $compile = $injector.get('$compile');
+      el = $compile(angular.element(simpleHtml))($scope);
+    });
+
+    $body.append(el);
+    $rootScope.$digest();
+
+  });
+
+  $END$
+
+});
+```
+`jasfactory` - Jasmine describe factory
+
+```HTML
+describe('$MyFactoryName$', function() {
+  var factory;
+
+  beforeEach(function () {
+    module('$module$', _dependencies_);
+
+    inject(function ($injector) {
+      factory = $injector.get('$MyFactoryName$');
+    });
+
+  });
+
+  $END$
+
+});
+```
+`jasfilter` - Jasmine describe filter
+
+```HTML
+describe('$MyFilterName$', function() {
+  var $filter, filter;
+
+  beforeEach(function () {
+    module('$module$', _dependencies_);
+
+    inject(function ($injector) {
+      $filter = $injector.get('$filter');
+      filter = $filter('$MyFilterName$');
+    });
+
+  });
+
+  $END$
+
+});
+```
+####Jasmine expect and spyon shortcuts
+`expectbe` - Expect(X).toBe(Y)
+
+```HTML
+expect($a$).toBe($b$);
+$END$
+```
+`expectcloseto` - Expect(X).toBeCloseTo(Y, Z)
+
+```HTML
+expect($a$).toBeCloseTo($closeValue$, $precision$);
+$END$
+```
+`expectcontain` - Expect(X).toContain(Y)
+
+```HTML
+expect($a$).toContain($b$);
+$END$
+```
+`expectdefined` - Expect(X).toBeDefined()
+
+```HTML
+expect($a$).toBeDefined();
+$END$
+```
+`expectequal` - Expect(X).toEqual(Y)
+
+```HTML
+expect($a$).toEqual($b$);
+$END$
+```
+`expectfalse` - Expect(X).toBeFalsy(Y)
+
+```HTML
+expect($a$).toBeFalsy();
+$END$
+```
+`expectgreaterthan` - Expect(X).toBeGreaterThan(Y)
+
+```HTML
+expect($a$).toBeGreaterThan($b$);
+$END$
+```
+`expecthavebeencalled` - Expect(X).toHaveBeenCalled()
+
+```HTML
+expect($a$).toHaveBeenCalled();
+$END$
+```
+`expecthavebeencalledwith` - Expect(X).toHaveBeenCalledWith(Y)
+
+```HTML
+expect($a$).toHaveBeenCalledWith($b$);
+$END$
+```
+`expectlessthan` - Expect(X).toBeLessThan(Y)
+
+```HTML
+expect($a$).toBeLessThan($b$);
+$END$
+```
+`expectmatch` - Expect(X).toMatch(Y)
+
+```HTML
+expect($a$).toMatch($b$);
+$END$
+```
+`expectnotbe` - Expect(X).not.toBe(Y)
+
+```HTML
+expect($a$).not.toBe($b$);
+$END$
+```
+`expectnotcontain` - Expect(X).not.toContain(Y)
+
+```HTML
+expect($a$).not.toContain($b$);
+$END$
+```
+`expectnotedefined` - Jasmine expect().not.toBeDefined()
+
+```HTML
+expect($a$).not.toBeDefined();
+$END$
+```
+`expectnotfalse` - Expect(X).not.toBeFalsy(Y)
+
+```HTML
+expect($a$).not.toBeFalsy();
+$END$
+```
+`expectnotmatch` - Jasmine Expect(X).not.toMatch(Y)
+
+```HTML
+expect($a$).not.toMatch($b$);
+$END$
+```
+`expectnotnukk` - Expect(X).not.toBeNull()
+
+```HTML
+expect($a$).not.toBeNull();
+$END$
+```
+`expectnotthrow` - Expect(X).not.toThrow()
+
+```HTML
+expect($a$).not.toThrow();
+$END$
+```
+`expectnottrue` - Expect(X).not.toBeTruthy(Y)
+
+```HTML
+expect($a$).not.toBeTruthy();
+$END$
+```
+`expectnotundefined` - Expect(X).toBeUndefined()
+
+```HTML
+expect($a$).not.toBeUndefined();
+$END$
+```
+`expectnull` - Expect(X).toBeNull()
+
+```HTML
+expect($a$).toBeNull();
+$END$
+```
+`expectthrow` - Expect(X).toThrow()
+
+```HTML
+expect($a$).toThrow();
+$END$
+```
+`expecttrue` - Expect(X).toBeTruthy(Y)
+
+```HTML
+expect($a$).toBeTruthy();
+$END$
+```
+`expectundefined` - Expect(X).toBeUndefined()
+
+```HTML
+expect($a$).toBeUndefined();
+$END$
+```
+`spyon` - spyOn(Obj, Key)
+
+```HTML
+spyOn($objToSpy$, '$objAttribute$')
+$END$
+```
+`spyoncallfake` - spyOn(Obj, Key).andCallFake(fct)
+
+```HTML
+spyOn($objToSpy$, '$objAttribute$').andReturn($returnValue$)
+$END$
+```
+`spyonreturn` - spyOn(Obj, Key).andReturn()
+
+```HTML
+spyOn($objToSpy$, '$objAttribute$').andReturn($returnValue$)
+$END$
+```
+`spyonthrough` - spyOn(Obj, Key).andCallThrough()
+
+```HTML
+spyOn($objToSpy$, '$objAttribute$').andCallThrough()
+$END$
+```
+
 ##Credits
 * [Pawel Kozlowski](https://github.com/pkozlowski-opensource) for initial creation of the Angular JS Live Templates
 * [Jaymes Bearden](https://github.com/jaymes-bearden) expansion, testing and documentation

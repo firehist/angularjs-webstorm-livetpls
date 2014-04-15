@@ -1,0 +1,11 @@
+{
+  "files":{
+    "angularjs_directive.xml":"Directive Related Templates",
+    "angularjs_global.xml":"Angular Globals",
+    "angularjs_html.xml":"Templates for use in HTML files",
+    "angularjs_module.xml":"Module Related Templates",
+    "angularjs_route.xml":"Route Related Templates",
+    "angularjs_scope.xml":"Scope Related Templates",
+    "Jasmine.xml":"Various Jasmine + AngularJS abbreviations"
+  }
+}
